@@ -8,15 +8,35 @@ namespace WiredBrainCoffee_StorageApp
     {
         static void Main(string[] args)
         {
-            var employeeRepository = new EmployeeRepository();
+            var employeeRepository = new GenericRepository<Employee>();
+            AddEmployees(employeeRepository);
+            GetEmployeeById(employeeRepository);
 
+            var organizationRepository = new GenericRepository<Organization>();
+            AddOrganizations(organizationRepository);
+
+            Console.ReadLine();
+        }
+
+        private static void GetEmployeeById(GenericRepository<Employee> employeeRepository)
+        {
+            var employee = employeeRepository.GetById(2);
+            Console.WriteLine($"employee with id 2: {employee.FirstName}");
+        }
+
+        private static void AddOrganizations(GenericRepository<Organization> organizationRepository)
+        {
+            organizationRepository.Add(new Organization { Name = "CodeLabs" });
+            organizationRepository.Add(new Organization { Name = "Pluralsight" });
+            organizationRepository.Save();
+        }
+
+        private static void AddEmployees(GenericRepository<Employee> employeeRepository)
+        {
             employeeRepository.Add(new Employee { FirstName = "Suyatna" });
             employeeRepository.Add(new Employee { FirstName = "Light" });
             employeeRepository.Add(new Employee { FirstName = "Tiara" });
-
             employeeRepository.Save();
-
-            Console.ReadLine();
         }
     }
 }
