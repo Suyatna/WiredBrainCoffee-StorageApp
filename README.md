@@ -1,6 +1,7 @@
 Learning C# generic using .NET 5.0 with Visual Studio 2019
 
-[The purpose of application]
+
+## The purpose of application
 
 Wired Brain Coffee Company is a company that runs several coffee shops around the world. 
 They want a .NET console application to load and save employees and organizations that visit their coffee shops.
