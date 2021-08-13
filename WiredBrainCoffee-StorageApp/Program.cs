@@ -39,8 +39,7 @@ namespace WiredBrainCoffee_StorageApp
         private static void AddOrganizations(IRepository<Organization> organizationRepository)
         {
             organizationRepository.Add(new Organization { Name = "CodeLabs" });
-            organizationRepository.Add(new Organization { Name = "Pluralsight" });
-            organizationRepository.Save();
+            organizationRepository.Add(new Organization { Name = "Pluralsight" });            
         }
 
         private static void AddEmployees(IRepository<Employee> employeeRepository)

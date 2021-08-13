@@ -1,0 +1,8 @@
+[user]
+    name = suyatna
+    email = zuyatna@gmail.com
+    signingkey = 1026D19DF738B509
+[commit]
+    gpgsign = true
+[gpg]
+    program = C:/Program Files (x86)/gnupg/bin/gpg
