@@ -32,10 +32,7 @@ namespace WiredBrainCoffee_StorageApp.Repositories
 
         public void Save()
         {
-            foreach (var item in _items)
-            {
-                Console.WriteLine(item);
-            }
+            // Everything is saved already in the List<T>
         }        
     }
 }
