@@ -42,14 +42,7 @@ namespace WiredBrainCoffee_StorageApp
         {
             var employee = employeeRepository.GetById(2);
             Console.WriteLine($"employee with id 2: {employee.FirstName}");
-        }
-
-        private static void AddOrganizations(IRepository<Organization> organizationRepository)
-        {
-            organizationRepository.Add(new Organization { Name = "CodeLabs" });
-            organizationRepository.Add(new Organization { Name = "Pluralsight" });
-            organizationRepository.Save(); 
-        }
+        }        
 
         private static void AddEmployees(IRepository<Employee> employeeRepository)
         {
@@ -57,6 +50,27 @@ namespace WiredBrainCoffee_StorageApp
             employeeRepository.Add(new Employee { FirstName = "Light" });
             employeeRepository.Add(new Employee { FirstName = "Tiara" });
             employeeRepository.Save();
+        }
+
+        private static void AddOrganizations(IRepository<Organization> organizationRepository)
+        {
+            var organizations = new[]
+            {
+                new Organization { Name = "Pluralsight" },
+                new Organization { Name = "Globomantics" }
+            };
+
+            AddBatch(organizationRepository, organizations);                       
+        }
+
+        private static void AddBatch(IRepository<Organization> organizationRepository, Organization[] organizations)
+        {
+            foreach (var item in organizations)
+            {
+                organizationRepository.Add(item);
+            }
+
+            organizationRepository.Save();
         }
     }
 }
