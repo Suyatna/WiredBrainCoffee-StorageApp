@@ -5,14 +5,18 @@ using WiredBrainCoffee_StorageApp.Entities;
 
 namespace WiredBrainCoffee_StorageApp.Repositories
 {
+    public delegate void ItemAdded(object item);
+
     public class SqlRepository<T> : IRepository<T> where T : class, IEntity
-    {
+    {        
         private readonly DbContext dbContext;
+        private readonly ItemAdded? itemAddedCallback;
         private readonly DbSet<T> dbSet;        
 
-        public SqlRepository(DbContext dbContext)
+        public SqlRepository(DbContext dbContext, ItemAdded? itemAddedCallback = null)
         {
             this.dbContext = dbContext;
+            this.itemAddedCallback = itemAddedCallback;
             dbSet = dbContext.Set<T>();
         }
 
@@ -29,6 +33,7 @@ namespace WiredBrainCoffee_StorageApp.Repositories
         public void Add(T item)
         {
             dbSet.Add(item);
+            itemAddedCallback?.Invoke(item);
         }
 
         public void Remove(T item)
